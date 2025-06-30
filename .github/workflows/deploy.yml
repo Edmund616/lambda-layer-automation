@@ -1,11 +1,12 @@
-name: Deploy Lambda Layer and Function
+name: Deploy Lambda Function and Layer
 
 on:
   push:
-    branches: [main]
+    branches: [main]  # Or "master" if you're using that
 
 jobs:
   deploy:
+    name: Build & Deploy to AWS
     runs-on: ubuntu-latest
 
     steps:
@@ -22,7 +23,7 @@ jobs:
           cd lambda
           zip -r ../lambda.zip .
 
-      - name: Zip Layer
+      - name: Zip Lambda layer
         run: |
           cd layer
           zip -r ../layer.zip .
@@ -34,12 +35,25 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+
       - name: Terraform Init
         run: |
           cd terraform
           terraform init
 
+      - name: Terraform Validate
+        run: |
+          cd terraform
+          terraform validate
+
+      - name: Terraform Plan
+        run: |
+          cd terraform
+          terraform plan -out=tfplan
+
       - name: Terraform Apply
         run: |
           cd terraform
-          terraform apply -auto-approve
+          terraform apply -auto-approve tfplan
