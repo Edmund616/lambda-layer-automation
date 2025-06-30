@@ -1,0 +1,34 @@
+# Ignore Lambda and Layer zip files
+*.zip
+
+# Python cache and virtual environments
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env/
+.venv/
+venv/
+
+# Terraform files
+*.tfstate
+*.tfstate.*
+.terraform/
+crash.log
+terraform.tfvars
+terraform.tfvars.json
+override.tf
+override.tf.json
+.terraform.lock.hcl
+
+# OS and Editor files
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Logs
+*.log
+
+# GitHub Actions temporary files
+.github/workflows/*.bak
