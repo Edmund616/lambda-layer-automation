@@ -5,4 +5,5 @@ lambda_runtime       = "python3.9"
 lambda_zip_path      = "../lambda.zip"
 layer_zip_path       = "../layer.zip"
 layer_name           = "utils-layer"
-
+lambda_role_arn      = "arn:aws:iam::<your-account-id>:role/lambda_exec_role"
+ 
