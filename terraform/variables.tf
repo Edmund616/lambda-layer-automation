@@ -28,11 +28,6 @@ variable "lambda_zip_path" {
   default     = "../lambda.zip"
 }
 
-variable "lambda_role_arn" {
-  type        = string
-  description = "Existing IAM role ARN for Lambda function"
-}
-
 variable "layer_name" {
   description = "Name of the Lambda layer"
   type        = string
