@@ -1,6 +1,6 @@
 resource "aws_lambda_function" "my_lambda" {
   function_name    = var.lambda_function_name
-  role             = var.lambda_role_arn
+  role             = aws_iam_role.lambda_exec.arn
   handler          = var.lambda_handler
   runtime          = var.lambda_runtime
   filename         = var.lambda_zip_path
